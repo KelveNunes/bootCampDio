@@ -25,7 +25,7 @@ Este projeto é um sistema bancário simples desenvolvido em Python, que permite
 
 ## Como Usar
 
-1. Execute o script `main.py`.
+1. Execute o script `python banco.py`.
 2. Escolha uma das opções do menu:
    - **1**: Para depositar um valor.
    - **2**: Para sacar um valor.
@@ -33,14 +33,3 @@ Este projeto é um sistema bancário simples desenvolvido em Python, que permite
    - **0**: Para encerrar o programa.
 3. Siga as instruções exibidas no terminal para realizar as operações desejadas.
 
-## Exemplo de Uso
-
-```bash
-Escolha uma das opções da conta:
-1 - Depositar
-2 - Sacar
-3 - Extrato
-0 - Parar operação
-1
-Quanto você deseja depositar? 300
-Depósito de R$300.00 realizado com sucesso!
