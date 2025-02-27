@@ -63,7 +63,7 @@ def new_user():
     print('Digite as informações do usuário:\n')
     nome = input('Nome: \n')
     data_nascimento = input('Data de nascimento: \n')
-    cpf = input('CPF: \n')  # CPF como string
+    cpf = input('CPF: \n')  
     endereco = input('Endereço: \n')
 
     new_user = {
