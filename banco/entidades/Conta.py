@@ -1,6 +1,6 @@
 
-from banco.entidades import Cliente
-from banco.servicos import Historico
+from entidades import Cliente
+from servicos import Historico
 
 
 class Conta():

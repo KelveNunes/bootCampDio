@@ -1,5 +1,5 @@
-from banco.entidades import Conta
-from banco.interfaces import Transacao
+from entidades import Conta
+from interfaces import Transacao
 
 
 class Cliente():
