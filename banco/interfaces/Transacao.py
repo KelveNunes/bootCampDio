@@ -4,5 +4,6 @@ from entidades import Conta
 class Transacao(ABC):
 
     @abstractmethod
-    def registrar(self, Conta):
+    def registrar(self, conta: Conta):
         pass
+        

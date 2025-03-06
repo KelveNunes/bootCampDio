@@ -1,7 +1,7 @@
-from banco.interfaces import Transacao
+from interfaces import Transacao
 
 
-class Historico():
+class Historico(Transacao):
 
-    def adicionar_transacao(transacao: Transacao):
+    def adicionar_transacao(self, transacao: Transacao):
         pass

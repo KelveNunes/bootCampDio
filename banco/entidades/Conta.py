@@ -13,17 +13,14 @@ class Conta():
         self._cliente = cliente,
         self._historico = historico,
     
-    def saldo():
-        pass
+    def saldo(self): float
+        
+    def nova_conta(self): Conta
+    
+    def sacar(self): bool
 
-    def nova_conta():
-        pass
+    def depositar(self): bool
 
-    def sacar():
-        pass
-
-    def depositar():
-        pass
         
         
         

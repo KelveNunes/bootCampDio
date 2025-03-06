@@ -1,5 +1,8 @@
-class Saque():
+from interfaces import Transacao
+
+
+class Saque(Transacao):
 
     def __init__(self, valor):
         
-        self.valor = valor
+        self._valor = valor
