@@ -1,47 +1,97 @@
-# Sistema Bancário Simples
+## Branch: `feature/modelagem-classes`
 
-Este projeto é um sistema bancário simples desenvolvido em Python, que permite ao usuário realizar operações básicas de depósito, saque, consulta de extrato, criação de usuários e criação de contas correntes. O código foi estruturado para simular o funcionamento de uma conta bancária, com regras como limite de saques diários e valor máximo por saque.
+### Objetivo
+Esta branch foi criada para **modelar as classes** do sistema com base no diagrama fornecido. O foco é estruturar as entidades e seus relacionamentos, garantindo que o código siga os princípios de orientação a objetos e seja escalável.
 
-## Funcionalidades
+---
 
-1. **Depósito**:
-   - Permite ao usuário depositar valores na conta.
-   - Valores devem ser maiores que zero.
-   - O saldo da conta é atualizado e o depósito é registrado.
+### Classes Modeladas
 
-2. **Saque**:
-   - Permite ao usuário sacar valores da conta, respeitando as seguintes regras:
-     - Saldo disponível na conta.
-     - Limite de 3 saques por dia.
-     - Valor máximo de R$ 500,00 por saque e R$ 500,00 no total diário.
-   - O saldo da conta é atualizado e o saque é registrado.
+Abaixo estão as principais classes modeladas nesta branch, com base no diagrama fornecido:
 
-3. **Extrato**:
-   - Exibe o saldo atual da conta.
-   - Lista todos os depósitos e saques realizados.
+---
 
-4. **Criação de Usuário**:
-   - Permite ao usuário cadastrar um novo usuário no sistema.
-   - As informações solicitadas são: nome, data de nascimento, CPF e endereço.
-   - O CPF é usado como identificador único do usuário.
+#### 1. **Cliente**
+Representa um cliente do sistema. Atributos e métodos incluem:
+- **Atributos**:
+  - `endereco`: Endereço do cliente.
+  - `contas`: Lista de contas associadas ao cliente.
+- **Métodos**:
+  - `realizar_transacao(conta: Conta, transacao: Transacao)`: Realiza uma transação em uma conta específica.
+  - `adicionar_conta(conta: Conta)`: Adiciona uma nova conta à lista de contas do cliente.
 
-5. **Criação de Conta Corrente**:
-   - Permite ao usuário criar uma nova conta corrente vinculada a um CPF cadastrado.
-   - Cada conta possui um número único, agência padrão "0001", e registros de saldo, saques e depósitos.
-   - O limite de saques e o valor máximo diário são aplicados por conta.
+---
 
-6. **Menu Interativo**:
-   - Oferece ao usuário um menu para escolher entre as operações disponíveis (depósito, saque, extrato, criação de usuário, criação de conta) ou encerrar o programa.
+#### 2. **PessoaFisica** (Herda de `Cliente`)
+Representa um cliente do tipo pessoa física. Atributos adicionais incluem:
+- **Atributos**:
+  - `cpf`: CPF do cliente (identificador único).
+  - `nome`: Nome completo do cliente.
+  - `data_nascimento`: Data de nascimento do cliente.
 
-## Como Usar
+---
 
-1. Execute o script `python banco.py`.
-2. Escolha uma das opções do menu:
-   - **1**: Para depositar um valor.
-   - **2**: Para sacar um valor.
-   - **3**: Para visualizar o extrato.
-   - **4**: Para criar um novo usuário.
-   - **5**: Para criar uma nova conta corrente.
-   - **0**: Para encerrar o programa.
-3. Siga as instruções exibidas no terminal para realizar as operações desejadas.
+#### 3. **Conta**
+Representa uma conta bancária. Atributos e métodos incluem:
+- **Atributos**:
+  - `saldo`: Saldo atual da conta.
+  - `numero`: Número da conta.
+  - `agencia`: Agência da conta.
+  - `cliente`: Cliente associado à conta.
+  - `historico`: Histórico de transações da conta.
+- **Métodos**:
+  - `saldo()`: Retorna o saldo atual da conta.
+  - `nova_conta(cliente: Cliente, numero: int)`: Cria uma nova conta.
+  - `sacar(valor: float)`: Realiza um saque na conta.
+  - `depositar(valor: float)`: Realiza um depósito na conta.
 
+---
+
+#### 4. **ContaCorrente** (Herda de `Conta`)
+Representa uma conta corrente, com limites específicos. Atributos adicionais incluem:
+- **Atributos**:
+  - `limite`: Limite de saque da conta.
+  - `limite_saques`: Número máximo de saques permitidos.
+
+---
+
+#### 5. **Transacao** (Interface)
+Representa uma transação genérica. Métodos incluem:
+- **Métodos**:
+  - `registrar(conta: Conta)`: Registra a transação na conta.
+
+---
+
+#### 6. **Deposito** (Implementa `Transacao`)
+Representa uma transação de depósito. Atributos e métodos incluem:
+- **Atributos**:
+  - `valor`: Valor do depósito.
+- **Métodos**:
+  - `registrar(conta: Conta)`: Registra o depósito na conta.
+
+---
+
+#### 7. **Saque** (Implementa `Transacao`)
+Representa uma transação de saque. Atributos e métodos incluem:
+- **Atributos**:
+  - `valor`: Valor do saque.
+- **Métodos**:
+  - `registrar(conta: Conta)`: Registra o saque na conta.
+
+---
+
+#### 8. **Historico**
+Representa o histórico de transações de uma conta. Atributos e métodos incluem:
+- **Atributos**:
+  - `historico`: Lista de transações.
+- **Métodos**:
+  - `adicionar_transacao(transacao: Transacao)`: Adiciona uma transação ao histórico.
+
+---
+
+### Relacionamentos entre Classes
+
+1. **Cliente** pode ter várias **Contas**.
+2. **ContaCorrente** é uma especialização de **Conta**.
+3. **Deposito** e **Saque** implementam a interface **Transacao**.
+4. **Historico** está associado a uma **Conta** e armazena objetos do tipo **Transacao**.
