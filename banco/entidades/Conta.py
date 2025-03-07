@@ -5,23 +5,44 @@ from servicos import Historico
 
 class Conta():
     
-    def __init__(self, saldo, numero, agencia, cliente: Cliente, historico: Historico):
+    def __init__(self, numero, cliente):
 
         
-        self._saldo = saldo
+        self._saldo = 0
         self._numero = numero
-        self._agencia = agencia
+        self._agencia = '001'
         self._cliente = cliente
-        self._historico = historico
+        self._historico = Historico()
+   
+    @classmethod
+    def nova_conta(cls, numero, cliente):
     
+        return cls(numero, cliente)
+    
+    @property
     def saldo(self):
 
-        print(f"o seu saldo é {self._saldo}")
-        
-    @classmethod
-    def nova_conta(cls, cliente, numero):
+        return self._saldo
     
-        return cls(saldo=0, numero=numero, cliente=cliente, historico=Historico())
+    @property
+    def numero(self):
+
+        return self._numero
+    
+    @property
+    def agencia(self):
+
+        return self._agencia
+    
+    @property
+    def cliente(self):
+
+        return self._cliente
+    
+    @property
+    def historico(self):
+
+        return self._historico
     
     def sacar(self, valor): 
 
